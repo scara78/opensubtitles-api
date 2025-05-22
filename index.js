@@ -3,6 +3,7 @@ const cors = require('cors');
 const openSubService = require('./services/opensubtitles');
 
 const app = express();
+app.use(express.json());
 const PORT = 3000;
 
 app.use(cors());
