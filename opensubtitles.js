@@ -1,4 +1,5 @@
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 const API_URL = 'https://www.opensubtitles.org/libs/suggest.php';
 const LANGS = 'spn,spl';
@@ -35,8 +36,32 @@ function getDownloadLink(fileId) {
   return `https://dl.opensubtitles.org/en/download/file/${fileId}`;
 }
 
+async function getFileIdFromSubtitlePage(subtitleId) {
+  const url = `https://www.opensubtitles.org/en/subtitles/${subtitleId}`;
+  try {
+    const { data: html } = await axios.get(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0' // evitas bloqueos por bots
+      }
+    });
+
+    const $ = cheerio.load(html);
+    const downloadLink = $('a[href*="/en/download/file/"]').attr('href');
+
+    if (!downloadLink) return null;
+
+    const match = downloadLink.match(/file\/(\d+)/);
+    return match ? match[1] : null;
+
+  } catch (err) {
+    console.error(`❌ Error fetching fileId for subtitle ${subtitleId}:`, err.message);
+    return null;
+  }
+}
+
 module.exports = {
   searchSubtitles,
   getSubtitleDetails,
-  getDownloadLink
+  getDownloadLink,
+  getFileIdFromSubtitlePage
 };
