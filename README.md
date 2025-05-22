@@ -24,3 +24,75 @@ cd opensubtitles-api
 npm install
 npm run dev
 ```
+
+▶️ Uso
+Iniciar servidor
+bash
+Copy
+Edit
+npm start
+Servidor disponible por defecto en http://localhost:3000
+
+🧪 Endpoints
+🔹 GET /api/subtitles/:imdbId
+Busca subtítulos disponibles para una película por su IMDb ID.
+
+Ejemplo:
+
+bash
+Copy
+Edit
+GET /api/subtitles/tt9603208
+Respuesta:
+
+json
+Copy
+Edit
+[
+  {
+    "subtitleId": "12918891",
+    "language": "Spanish (LA)",
+    "title": "Mission: Impossible - Dead Reckoning Part Two",
+    "downloadPage": "https://www.opensubtitles.org/en/subtitles/12918891"
+  },
+  ...
+]
+🔹 GET /api/subtitle/:subtitleId
+Obtiene detalles de un subtítulo específico, incluyendo el enlace directo a descarga.
+
+Ejemplo:
+
+bash
+Copy
+Edit
+GET /api/subtitle/12918891
+Respuesta:
+
+json
+Copy
+Edit
+{
+  "subtitleId": "12918891",
+  "subtitleUrl": "https://www.opensubtitles.org/en/subtitles/12918891",
+  "downloadUrl": "https://www.opensubtitles.org/en/download/sub/12918891",
+  "fileId": "1961493430",
+  "directDownload": "https://dl.opensubtitles.org/en/download/file/1961493430"
+}
+🌍 Idiomas soportados
+spn – Spanish (Spain)
+
+spl – Spanish (Latin America)
+
+Puedes combinar varios: spn,spl,en
+
+🛠️ Tecnologías
+Node.js
+
+Express.js
+
+Axios
+
+Cheerio (scraping ligero)
+
+📄 Licencia
+MIT License © 2025
