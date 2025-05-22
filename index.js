@@ -1,14 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const subtitlesRouter = require('./routes/subtitles');
+const routes = require('./routes');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.use('/api', subtitlesRouter);
-
 const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(routes);
+
 app.listen(PORT, () => {
-  console.log(`✅ API corriendo en http://localhost:${PORT}`);
+  console.log(`✅ API running at http://localhost:${PORT}`);
 });
