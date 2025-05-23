@@ -17,8 +17,8 @@ router.get('/api/search/:imdbid', async (req, res) => {
 });
 
 // Obtener info de un subtitleId
-router.get('/api/subtitle/:subtitleId', (req, res) => {
-  const data = getSubtitleDetails(req.params.subtitleId);
+router.get('/api/subtitle/:subtitleId', async (req, res) => {
+  const data = await getSubtitleDetails(req.params.subtitleId);
   res.json(data);
 });
 
