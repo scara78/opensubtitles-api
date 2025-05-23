@@ -41,6 +41,7 @@ async function getFileIdFromSubtitlePage(subtitleId) {
   const url = `https://www.opensubtitles.org/en/subtitles/${subtitleId}`;
   try {
     const { data: html } = await axios.get(url, {
+      maxRedirects: 30,
       headers: {
         'User-Agent': 'Mozilla/5.0' // evitas bloqueos por bots
       }
