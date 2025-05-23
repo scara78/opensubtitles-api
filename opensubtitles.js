@@ -23,13 +23,13 @@ async function searchSubtitles(imdbid) {
   }));
 }
 
-function getSubtitleDetails(subtitleId) {
-  const fileId = await getFileIdFromSubtitlePage(req.params.subtitleId);
+async function getSubtitleDetails(subtitleId) {
+  const fileId = await getFileIdFromSubtitlePage(subtitleId);
   return {
     subtitleId,
     subtitleUrl: `${BASE}/en/subtitles/${subtitleId}`,
     downloadUrl: `${BASE}/en/download/sub/${subtitleId}`,
-    directFile: getDownloadLink(fileId) : null // needs page scrape, skipped on purpose
+    directFile: getDownloadLink(fileId) ?? null // needs page scrape, skipped on purpose
   };
 }
 
