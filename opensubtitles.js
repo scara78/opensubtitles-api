@@ -18,7 +18,7 @@ async function searchSubtitles(imdbid) {
     subtitleId: item.id,
     imdbid: `tt${item.pic}`,
     language: LANGS,
-    subtitleUrl: `${BASE}/en/subtitles/${item.id}`,
+    //subtitleUrl: `${BASE}/en/subtitles/${item.id}`,
     filePage: `${BASE}/en/search/sublanguageid-${LANGS}/imdbid-${item.pic}`
   }));
 }
@@ -48,7 +48,7 @@ async function getFileIdFromSubtitlePage(subtitleId) {
     });
 
     const $ = cheerio.load(html);
-    const match = $.match(/\/file\/(\d{7,10})/);
+    const match = html.match(/\/file\/(\d{7,10})/);
     return match ? match[1] : null;
 
   } catch (err) {
