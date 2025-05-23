@@ -47,11 +47,7 @@ async function getFileIdFromSubtitlePage(subtitleId) {
     });
 
     const $ = cheerio.load(html);
-    const downloadLink = $('a[href*="/en/download/file/"]').attr('href');
-
-    if (!downloadLink) return null;
-
-    const match = downloadLink.match(/file\/(\d+)/);
+    const match = $.match(/\/file\/(\d{7,10})/);
     return match ? match[1] : null;
 
   } catch (err) {
