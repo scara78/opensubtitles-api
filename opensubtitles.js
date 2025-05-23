@@ -38,12 +38,12 @@ function getDownloadLink(fileId) {
 }
 
 async function getFileIdFromSubtitlePage(subtitleId) {
-  const url = `https://www.opensubtitles.org/en/subtitles/${subtitleId}`;
+  const url = `${BASE}/en/search/sublanguageid-${LANGS}/imdbid-${subtitleId}`;
   try {
     const { data: html } = await axios.get(url, {
-      maxRedirects: 30,
+      maxRedirects: 5,
       headers: {
-        'User-Agent': 'Mozilla/5.0' // evitas bloqueos por bots
+        'User-Agent': 'Mozilla/5.0 TestBot' // evitas bloqueos por bots
       }
     });
 
