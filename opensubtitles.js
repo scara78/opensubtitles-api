@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const API_URL = 'https://www.opensubtitles.org/libs/suggest.php';
-const LANGS = 'spa,spn,spl';
+const LANGS = 'rum,rom,ro';
 const BASE = 'https://www.opensubtitles.org';
 
 async function searchSubtitles(imdbid) {
