@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 const BASE_URL = 'https://www.opensubtitles.org';
 
 async function searchSubtitles(imdbid) {
-  const lang = 'spn,spl';
+  const lang = 'rum';
   const url = `${BASE_URL}/en/search/sublanguageid-${lang}/imdbid-${imdbid}`;
   const response = await axios.get(url);
   const $ = cheerio.load(response.data);
